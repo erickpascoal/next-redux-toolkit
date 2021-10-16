@@ -13,7 +13,7 @@ interface IState {
 const initialState: IState = {
   pokemons: [
     {
-      name: "erick",
+      name: "erick 13",
       url: "https://avatars.githubusercontent.com/u/92316688?v=4",
     },
   ],
