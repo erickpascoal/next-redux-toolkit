@@ -1,20 +1,21 @@
-import { pokemonService } from "services/pokemon";
+import { loadPokemons } from "store/slices/pokemonSlice";
+import { reduxWrapper } from "store/store";
 import { PokemonListTemplate } from "templates/PokemonsList";
 
 function PokemonList() {
   return <PokemonListTemplate />;
 }
 
-// export async function getServerSideProps(context: any) {
-//   // const { store } = context;
+export const getServerSideProps = reduxWrapper.getServerSideProps(
+  (store) => async () => {
+    await Promise.all([store.dispatch(loadPokemons())]);
 
-//   // store.dispatch(loadPokemons());
+    console.log("State on server", store.getState().pokemon.pokemons.length);
 
-//   const pokemons = await pokemonService.loadPokemons();
-
-//   return {
-//     props: { pokemons }, // will be passed to the page component as props
-//   };
-// }
+    return {
+      props: {},
+    };
+  }
+);
 
 export default PokemonList;

@@ -3,18 +3,12 @@ import { useReduxSelector } from "hooks/useReduxSelector";
 import { pokemonSelector } from "store/selectors";
 
 export function PokemonListTemplate() {
-  // const { pokemons } = useReduxSelector(pokemonSelector);
-
-  const pokemons: any = [
-    {
-      name: "erick",
-      url: "https://avatars.githubusercontent.com/u/92316688?v=4",
-    },
-  ];
+  const pokemonState = useReduxSelector(pokemonSelector);
 
   return (
     <div>
-      {pokemons.map((pokemon: any) => (
+      {pokemonState.pokemons.length}
+      {pokemonState.pokemons.map((pokemon: any) => (
         <div key={pokemon.name}>
           <h1>{pokemon.name}</h1>
           <p>{pokemon.url}</p>
